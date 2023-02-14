@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+body{
+	text-align: center;
+	margin-top: 7em;
+}
+
+button {
+	padding: 1em 2.1em 1.1em;
+	display: block;
+	color: #e8e1df;
+	background-color: #fbdedb;
+	display: inline-block;
+	background: #ec7b6f;
+	background-color: #f04747;
+	transition: 0.6s;
+	font-family: 'Bungee', cursive;
+	font-size: 2em;
+	text-align: center;
+	position: relative;
+	border-radius: 1.5em;
+	box-shadow: 0em -0.6rem 0.1em rgba(0, 0, 0, 0.1) inset;
+	border:none;
+}
+button:hover, .btn:focus {
+    opacity: 0.75;
+}
+button:active {
+    transform: scale(1.2);
+}
