@@ -174,7 +174,7 @@ try {
         // Existe DNI?
         if (controlCliente.listaClientes.length > 0) {
             existeDNI = controlCliente.listaClientes.find(element => Number(element.dni) === Number(dni))
-            alert(existeDNI);
+            //alert(existeDNI);
             if (existeDNI != undefined) {
                 alert("El DNI ingresado ya existe! Se cancela el ingreso de datos.");
                 break;
