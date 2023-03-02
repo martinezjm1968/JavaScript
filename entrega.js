@@ -5,8 +5,78 @@
 // no muestra correctamente el tipo de error.
 try {
 
+    // Declaro la clase Cliente
+    class Cliente {
+        constructor(id, nombre, apellido, dni, edad, sexo, pais, mail, importe, monto, interes) {
+            this.id = id;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.dni = dni;
+            this.edad = edad;
+            this.sexo = sexo;
+            this.pais = pais;
+            this.mail = mail;
+            this.importe = importe;
+            this.monto = monto;
+            this.interes = interes;
+        }
+
+        // Determino el CUIL con el DNI y Sexo
+        cuil() {
+            let primerDato = 0;
+            let cuil;
+            let verificador;
+
+            // console.log(this.dni);
+            
+            // Los dos primeros dígitos
+            if (this.sexo == "Masculino") {
+                primerDato = 20;
+            } else {
+                primerDato = 27;
+            }
+            // Calculo el verificador
+            cuil = String(primerDato) + String(this.dni);
+
+            // Para dividir una línea larga selecciono y presiono ALT-Z
+            verificador = ((Number(cuil[0]) * 5) + (Number(cuil[1] * 4)) + (Number(cuil[2] * 3)) + (Number(cuil[3] * 2)),
+                (Number(cuil[4]) * 7) + (Number(cuil[5] * 6)) + (Number(cuil[6] * 5)) + (Number(cuil[7] * 4)),
+                (Number(cuil[8]) * 3) + (Number(cuil[9] * 2)));
+
+            let z = (parseInt(verificador)) % 11;
+            if (z == 0) {
+                verificador = 0
+            } else {
+                verificador = 11 - Number.isInteger(verificador);
+                if (verificador == 10) {
+                    verificador = 1;
+                }
+            }
+            cuil = String(primerDato) + "-" + String(this.dni) + "-" + String(verificador);
+            // console.log(cuil);
+            return cuil;
+        }
+    }
+
+    // Declaro la clase ControCliente
+    class ControlCliente {
+
+        constructor() {
+            this.listaClientes = []
+        }
+
+        agregarCliente(cliente) {
+            this.listaClientes.push(cliente)
+        }
+
+        
+    }
+
+
+
 
     // Declaracion de variables
+    let id;
     let nombre;
     let apellido;
     let dni;
@@ -41,44 +111,13 @@ try {
         }
     }
 
-    // Determino el CUIL con el DNI y Sexo
-    function cuil(documento, sex) {
-        // Los dos primeros dígitos
-        if (sex == "Masculino") {
-            primerDato = 20;
-        } else {
-            primerDato = 27;
-        }
-        // Calculo el verificador
-        cuil = String(primerDato) + String(documento);
-
-        // Para dividir una línea larga selecciono y presiono ALT-Z
-        verificador = ((Number(cuil[0]) * 5) + (Number(cuil[1] * 4)) + (Number(cuil[2] * 3)) + (Number(cuil[3] * 2)),
-            (Number(cuil[4]) * 7) + (Number(cuil[5] * 6)) + (Number(cuil[6] * 5)) + (Number(cuil[7] * 4)),
-            (Number(cuil[8]) * 3) + (Number(cuil[9] * 2)));
-
-        z = (parseInt(verificador)) % 11;
-        if (z == 0) {
-            verificador = 0
-        } else {
-            verificador = 11 - Number.isInteger(verificador);
-            if (verificador == 10) {
-                verificador = 1;
-            }
-        }
-        cuil = primerDato + "-" + documento + "-" + String(verificador);
-        return cuil;
-    }
-
-
-
-
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     // Programa para ingreso de datos y validaciones
     // Valido nombre y apellido
+    // Instancio la clase 
+    const controlCliente = new ControlCliente()
+
     while (cancela == false) {
 
         do {
@@ -144,7 +183,7 @@ try {
                 cancela = cancelar(x, " ");
                 if (cancela == true) {
                     break;
-                }                
+                }
                 alert("La edad no es válida! \nPor favor, ingrese una edad válida.");
                 cond = 1;
             }
@@ -214,7 +253,7 @@ try {
         // Aquí va a ingresar un monto X para poder determinar el porcentaje de interes que se aplica
         cond = 0;
         do {
-            importe = prompt("Ingrese Monto:");
+            importe = prompt("Ingrese Monto Solicitado:");
             if (importe > 0) {
                 interes = Number(importe) * 0.30;
                 monto = Number(importe) + Number(interes);
@@ -225,23 +264,35 @@ try {
             }
         } while (cond == 1);
 
-        // Muestro el resultado de los datos ingresados
-        alert(`Los datos ingresados son:
-        Nombre y apellido: ${nombre.trim()}, ${apellido.trim()}
-        DNI: ${dni} 
-        CUIL: ${cuil(dni, sexo)}
-        Nacionalidad: ${pais}
-        Edad: ${edad} 
-        Sexo: ${sexo} 
-        E-Mail: ${mail}
-        Monto Ingresado: $${importe}
-        Interes calculado: $${interes}
-        Monto final: $${monto}`);
-    }
-    alert("Fin");
+        // Calculo el ID del nuevo cliente
+        id = Number(controlCliente.listaClientes.length) + 1;
+        // console.log(id);
+        // Agrego cliente nuevo
 
-        // ReferenceError
-} 
+        controlCliente.agregarCliente(new Cliente(id, nombre, apellido, dni, edad, sexo, pais, mail, importe, monto, interes))
+
+
+        controlCliente.listaClientes.forEach(element => {
+            alert(`Los datos ingresados son:
+         ID Cliente: ${element.id}
+         Nombre y apellido: ${element.nombre}, ${element.apellido}
+         DNI: ${element.dni} 
+         CUIL: ${element.cuil()}
+         Nacionalidad: ${element.pais}
+         Edad: ${element.edad} 
+         Sexo: ${element.sexo} 
+         E-Mail: ${element.mail}
+         Monto Solicitado: $${element.importe}
+         Interes calculado: $${element.interes}
+         Monto A Devolver: $${element.monto}`);
+        });
+
+    }
+    alert("Fin!");
+
+    
+}
+// ReferenceError
 catch (err) {
     alert(`Error detectado: 
 ${err.name}
