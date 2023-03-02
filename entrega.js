@@ -121,7 +121,7 @@ try {
     while (cancela == false) {
 
         do {
-            nombre = prompt("Ingrese el nombre:");
+            nombre = prompt("Nuevo Cliente" + "\nIngrese el nombre:");
             apellido = prompt("Ingrese el apellido:");
 
             if ((nombre != "" && nombre != null) || (apellido != "" && apellido != null)) {
@@ -272,23 +272,39 @@ try {
         controlCliente.agregarCliente(new Cliente(id, nombre, apellido, dni, edad, sexo, pais, mail, importe, monto, interes))
 
 
-        controlCliente.listaClientes.forEach(element => {
-            alert(`Los datos ingresados son:
-         ID Cliente: ${element.id}
-         Nombre y apellido: ${element.nombre}, ${element.apellido}
-         DNI: ${element.dni} 
-         CUIL: ${element.cuil()}
-         Nacionalidad: ${element.pais}
-         Edad: ${element.edad} 
-         Sexo: ${element.sexo} 
-         E-Mail: ${element.mail}
-         Monto Solicitado: $${element.importe}
-         Interes calculado: $${element.interes}
-         Monto A Devolver: $${element.monto}`);
-        });
+        // controlCliente.listaClientes.forEach(element => {
+        //     alert(`Los datos ingresados son:
+        //  ID Cliente: ${element.id}
+        //  Nombre y apellido: ${element.nombre}, ${element.apellido}
+        //  DNI: ${element.dni} 
+        //  CUIL: ${element.cuil()}
+        //  Nacionalidad: ${element.pais}
+        //  Edad: ${element.edad} 
+        //  Sexo: ${element.sexo} 
+        //  E-Mail: ${element.mail}
+        //  Monto Solicitado: $${element.importe}
+        //  Interes calculado: $${element.interes}
+        //  Monto A Devolver: $${element.monto}`);
+        // });
 
     }
-    alert("Fin!");
+
+    controlCliente.listaClientes.forEach(element => {
+        alert(`Los datos ingresados son:
+     ID Cliente: ${element.id}
+     Nombre y apellido: ${element.nombre}, ${element.apellido}
+     DNI: ${element.dni} 
+     CUIL: ${element.cuil()}
+     Nacionalidad: ${element.pais}
+     Edad: ${element.edad} 
+     Sexo: ${element.sexo} 
+     E-Mail: ${element.mail}
+     Monto Solicitado: $${element.importe}
+     Interes calculado: $${element.interes}
+     Monto A Devolver: $${element.monto}`);
+    });
+
+    alert("Fin Ingreso de Datos!");
 
     
 }
