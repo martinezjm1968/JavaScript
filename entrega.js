@@ -28,7 +28,7 @@ try {
             let verificador;
 
             // console.log(this.dni);
-            
+
             // Los dos primeros dígitos
             if (this.sexo == "Masculino") {
                 primerDato = 20;
@@ -69,7 +69,7 @@ try {
             this.listaClientes.push(cliente)
         }
 
-        
+
     }
 
 
@@ -89,6 +89,7 @@ try {
     let interes;
     let cond = 0;
     let cancela = false;
+    let existeDNI;
 
     // Declaro funciones
     // Determino si cancela o no
@@ -115,6 +116,7 @@ try {
 
     // Programa para ingreso de datos y validaciones
     // Valido nombre y apellido
+
     // Instancio la clase 
     const controlCliente = new ControlCliente()
 
@@ -146,22 +148,21 @@ try {
         cond = 0;
         do {
             dni = parseInt(prompt("Ingrese el DNI:"));
-
             if (dni >= 6000000 && dni < 100000000) {
                 cond = 0;
-
                 // Valido nacionalidad
                 pais = nacionalidad(dni);
-
             } else {
-                // Si apreto el boton de cancel salgo del ingreso de datos
-                x = dni.isNaN;
+                x = isNaN(dni);
                 cancela = cancelar(x, " ");
+                // Si apreto el boton de cancel salgo del ingreso de datos
                 if (cancela == true) {
+                    cond = 0;
                     break;
+                } else {
+                    cond = 1;
+                    alert("El DNI ingresado NO es válido! \nDebe ingresar un DNI mayor a 6.000.000 y menor a 100.000.000");
                 }
-                cond = 1;
-                alert("El DNI ingresado NO es válido! \nDebe ingresar un DNI mayor a 6.000.000 y menor a 100.000.000");
             }
         } while (cond == 1);
 
@@ -170,22 +171,34 @@ try {
             break;
         }
 
+        // Existe DNI?
+        if (controlCliente.listaClientes.length > 0) {
+            existeDNI = controlCliente.listaClientes.find(element => Number(element.dni) === Number(dni))
+            alert(existeDNI);
+            if (existeDNI != undefined) {
+                alert("El DNI ingresado ya existe! Se cancela el ingreso de datos.");
+                break;
+            }
+        }
+
+
         // Valido edad
         cond = 0;
         do {
-            edad = parseInt(prompt("Ingrese el edad:"));
+            edad = parseInt(prompt("Ingrese la edad:"));
             if (edad > 10 && edad < 100) {
-
                 cond = 0;
             } else {
                 // Si apreto el boton de cancel salgo del ingreso de datos
-                x = edad.isNaN;
+                x = isNaN(edad);
                 cancela = cancelar(x, " ");
                 if (cancela == true) {
+                    cond = 0;
                     break;
+                } else {
+                    alert("La edad no es válida! \nPor favor, ingrese una edad válida.");
+                    cond = 1;
                 }
-                alert("La edad no es válida! \nPor favor, ingrese una edad válida.");
-                cond = 1;
             }
         } while (cond == 1);
 
@@ -199,8 +212,7 @@ try {
         do {
             sexo = prompt("Ingrese el sexo:");
             sexo = sexo.toUpperCase()
-
-            if ((sexo.charAt(0) == "M" && sexo.charAt(1) == "A") || (sexo.charAt(0) == "F" && sexo.charAt(1) == "E")) {
+            if ((sexo.charAt(0).toUpperCase() == "M" && sexo.charAt(1).toUpperCase() == "A") || (sexo.charAt(0).toUpperCase() == "F" && sexo.charAt(1).toUpperCase() == "E")) {
                 if ((sexo.charAt(0) == "M")) {
                     //alert(`El sexo es "Masculino".`);
                     sexo = "Masculino"
@@ -259,7 +271,7 @@ try {
                 monto = Number(importe) + Number(interes);
                 cond = 0;
             } else {
-                alert("Por favor, ingrese un monto mayor a cero!");
+                alert("Usted ha cancelado el ingreso de datos!");
                 cond = 1;
             }
         } while (cond == 1);
@@ -270,22 +282,6 @@ try {
         // Agrego cliente nuevo
 
         controlCliente.agregarCliente(new Cliente(id, nombre, apellido, dni, edad, sexo, pais, mail, importe, monto, interes))
-
-
-        // controlCliente.listaClientes.forEach(element => {
-        //     alert(`Los datos ingresados son:
-        //  ID Cliente: ${element.id}
-        //  Nombre y apellido: ${element.nombre}, ${element.apellido}
-        //  DNI: ${element.dni} 
-        //  CUIL: ${element.cuil()}
-        //  Nacionalidad: ${element.pais}
-        //  Edad: ${element.edad} 
-        //  Sexo: ${element.sexo} 
-        //  E-Mail: ${element.mail}
-        //  Monto Solicitado: $${element.importe}
-        //  Interes calculado: $${element.interes}
-        //  Monto A Devolver: $${element.monto}`);
-        // });
 
     }
 
@@ -306,7 +302,7 @@ try {
 
     alert("Fin Ingreso de Datos!");
 
-    
+
 }
 // ReferenceError
 catch (err) {
