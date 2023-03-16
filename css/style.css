@@ -1,0 +1,49 @@
+/* Primero tipografía y luego * los márgenes si o si */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --------------------------------------------------------- */
+/* Comienza Header */
+
+header{
+    /* Color cabecera */
+    background-color: rgba(0, 0, 0, 0.85);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+body{
+    background-color: gray;
+}
+
+.sector{
+    max-width: 80%;
+    margin:auto;
+    display: flex;
+    align-content:center ;
+    flex-direction: column;
+}
+
+.cargar{
+    max-width: 30%;
+    margin: auto;
+    display: flex;
+    align-content:center ;
+    flex-direction:column;
+}
+
+.radio{
+    background-color: black;
+    font: bold;
+    color: white;
+    align-items: center;
+}
+
+
+
