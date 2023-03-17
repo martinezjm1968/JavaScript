@@ -22,8 +22,8 @@
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>                
-                
+                </button>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -43,7 +43,7 @@
                         <button id="botonBuscar" class="btn-dark btn-outline-success-bg-dark"
                             type="button">Buscar</button>
                     </form>
-                    
+
                 </div>
             </div>
         </nav>
@@ -55,59 +55,104 @@
         <section>
             <form class="cargar" id="formulario">
                 <h1>Roster Locomotoras</h1>
-
-                
-                <br>
-                <span class="radio"> Tipo Locomotora: </span>
-                <input type="radio" name="tipo" value="Vapor" id="vapor" required><label for="vapor">Vapor</label>
-                <input type="radio" name="tipo" value="Diesel" id="diesel"><label for="diesel">Diesel</label>
-                <input type="radio" name="tipo" value="Electrica" id="electrica"><label for="electrica">Eléctrica</label>
-                <br>
-                
-                <input type="text"  id="modelo" value = "" placeholder="modelo" required>
-                <br>
-                <input type="cantidad"  id="cantidad" placeholder="cantidad" required>
-                <br>
-                <input type="number"  id="nro" placeholder="nro" required>
-                <br>
-
-                <input type="marca"  id="marca" placeholder="marca" required>
+                <!-- Radio button Tipo Loco -->
+                <p class="radio"> Tipo Locomotora: </p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipo" value="Vapor" id="vapor" requeried><label
+                        class="form-check-label" for="vapor">Vapor</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipo" value="Diesel" id="diesel"><label
+                        class="form-check-label" for="diesel">Diesel</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipo" value="Electrica" id="electrica"><label
+                        class="form-check-label" for="electrica">Electrica</label>
+                </div>
                 <br>
 
-                <input type="date"  id="fechaCompra" placeholder="fecha compra" required>
+                <input type="text" id="modelo" value="" placeholder="modelo" required>
+                <br>
+                <input type="cantidad" id="cantidad" placeholder="cantidad" required>
+                <br>
+                <input type="number" id="nro" placeholder="nro" required>
+                <br>
+                <input type="marca" id="marca" placeholder="marca" required>
+                <br>
+                <input type="date" id="fechaCompra" placeholder="fecha compra" required>
                 <br>
                 <input type="text" accept="image/png" value="../assets/img/.* " id="imagen" type="file" required>
                 <br>
 
-                <span class="radio"> Compañia: </span>
-                <input type="radio" name="cia" value="BNSF" id="bnsf" required><label for="bnsf">BNSF</label>
-                <input type="radio" name="cia" value="NP" id="np"><label for="np">NP</label>
-                <input type="radio" name="cia" value="PRR" id="prr"><label for="prr">PRR</label>
-                <input type="radio" name="cia" value="SP" id="sp"><label for="sp">SP</label>
-                <input type="radio" name="cia" value="CSX" id="csx"><label for="csx">CSX</label>
-                <input type="radio" name="cia" value="UP" id="up"><label for="up">UP</label>
-                <input type="radio" name="cia" value="NB" id="nb"><label for="nb">NB</label>
-                <input type="radio" name="cia" value="CN" id="cn"><label for="cn">CN</label>
-                <input type="radio" name="cia" value="NS" id="ns"><label for="ns">NS</label>
+                <!-- Radio Button Compañia -->
+                <p class="radio"> Compañia: </p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="BNSF" id="bnsf" requeried><label
+                        class="form-check-label" for="bnsf">BNSF</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="NP" id="np"><label
+                        class="form-check-label" for="np">NP</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="PRR" id="prr"><label
+                        class="form-check-label" for="prr">PRR</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="SP" id="sp"><label
+                        class="form-check-label" for="sp">SP</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="CSX" id="csx"><label
+                        class="form-check-label" for="csx">CSX</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="UP" id="up"><label
+                        class="form-check-label" for="up">UP</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="NB" id="nb"><label
+                        class="form-check-label" for="nb">NB</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="CN" id="cn"><label
+                        class="form-check-label" for="cn">CN</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cia" value="NS" id="NS"><label
+                        class="form-check-label" for="ns">NS</label>
+                </div>
                 <br>
 
-                <span class="radio"> Sistema: </span>
-                <input type="radio" name="dcc" value="Analoga" id="analoga" required><label for="analoga">ANALOGA</label>
-                <input type="radio" name="dcc" value="Digital" id="digital"><label for="digital">DIGITAL</label>
-                <input type="radio" name="dcc" value="Sonido" id="sonido"><label for="sonido">DCC/SONIDO</label>
-                <input type="radio" name="dcc" value="Humo" id="humo"><label for="humo">DCC/SONIDO/HUMO</label>
+                <!-- Radio button Sistema  -->
+                <p class="radio"> Sistema: </p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="dcc" value="Analoga" id="analoga"><label
+                        class="form-check-label" for="analoga">Analoga</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="dcc" value="Digital" id="digital"><label
+                        class="form-check-label" for="digital">Digital</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="dcc" value="Sonido" id="sonido"><label
+                        class="form-check-label" for="sonido">Digital +Sonido</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="dcc" value="Humo" id="humo"><label
+                        class="form-check-label" for="humo">Digital +Sonido +Humo</label>
+                </div>
                 <br>
 
-                <input type="number"  id="dir_dcc" placeholder="dir dcc" required>
+                <input type="number" id="dir_dcc" placeholder="dir dcc" required>
+                <br>
+                <input type="number" id="costo" placeholder="costo u$" required>
+                <br>
+                <input type="number" id="precio" placeholder="precio u$" required>
+                <br>
                 <br>
 
-                <input type="number"  id="costo" placeholder="costo u$" required>
-                <br>
-                <input type="number"  id="precio" placeholder="precio u$" required>
-                <br>
-                <br>  
-
-                <input id= "botonSubmit" type="submit" value="Guardar Producto">
+                <input id="botonSubmit" type="submit" value="Guardar Producto">
             </form>
         </section>
 
