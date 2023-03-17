@@ -17,7 +17,7 @@ try {
         console.log(roster);
 
         // Hago la búsqueda
-        let encontrado = roster.filter(objeto => objeto.modelo == aBuscar.value);
+        let encontrado = roster.filter(objeto => objeto.modelo.toLowerCase() == aBuscar.value.toLowerCase());
         console.log("Resultado encontrado: " + encontrado);
 
         if (encontrado) {

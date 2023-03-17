@@ -13,7 +13,7 @@ try {
         console.log(roster);
 
         // Hago la búsqueda
-        let encontrado = roster.filter(objeto => objeto.modelo == aBuscar.value);
+        let encontrado = roster.filter(objeto => objeto.modelo.toLowerCase() == aBuscar.value.toLowerCase());
         console.log("Resultado encontrado: " + encontrado);
 
         // Si bien encontrado debería ser único lo trato como un array de objeto para facilitar la carga
@@ -124,7 +124,7 @@ try {
         // Segundo, actualizo los índices y hago un push de la nueva info ingresada
         
         // Hago la búsqueda y borrado
-        let encontrado = roster.filter(objeto => objeto.modelo == aBuscar.value);
+        let encontrado = roster.filter(objeto => objeto.modelo.toLowerCase() == aBuscar.value.toLowerCase());
 
         encontrado.forEach(element => {
             let contador = 0
