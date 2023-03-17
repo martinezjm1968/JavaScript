@@ -26,8 +26,8 @@ try {
                     <p class="card-text">Sistema: ${el.dcc}</p>
                     <p class="card-text">Dir DCC: ${el.dir_dcc}</p>
                     <p class="card-text">Compañia: ${el.cia}</p>
-                    <p class="card-text">Costo: ${el.costo}</p>
-                    <p class="card-text">Precio: ${el.precio}</p>
+                    <p class="card-text">Costo: u$${el.costo}</p>
+                    <p class="card-text">Precio: u$${el.precio}</p>
 
                     <a href="#" class="btn btn-primary" onclick="borrarCard(${contador})">Borrar Card</a>
                 </div>

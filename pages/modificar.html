@@ -37,6 +37,12 @@
                             <a class="nav-link active" aria-current="page" href="../pages/modificar.html">Modificar</a>
                         </li>
                     </ul>
+                    <form class="d-flex">
+                        <input id="buscar" class="form-control me-2" type="search" placeholder="Buscar Modelo"
+                            aria-label="Search">
+                        <button id="botonBuscar" class="btn-dark btn-outline-success-bg-dark"
+                            type="button">Buscar</button>
+                    </form>
                     
                 </div>
             </div>
@@ -55,30 +61,27 @@
                 <span class="radio"> Tipo Locomotora: </span>
                 <input type="radio" name="tipo" value="Vapor" id="vapor" required><label for="vapor">Vapor</label>
                 <input type="radio" name="tipo" value="Diesel" id="diesel"><label for="diesel">Diesel</label>
-                <input type="radio" name="tipo" value="Vagon" id="vagon"><label for="vagon">Vagon</label>
-                <input type="radio" name="tipo" value="Electrica" id="electrica"><label
-                    for="electrica">Eléctrica</label>
+                <input type="radio" name="tipo" value="Electrica" id="electrica"><label for="electrica">Eléctrica</label>
+                <br>
+                
+                <input type="text"  id="modelo" value = "" placeholder="modelo" required>
+                <br>
+                <input type="cantidad"  id="cantidad" placeholder="cantidad" required>
+                <br>
+                <input type="number"  id="nro" placeholder="nro" required>
                 <br>
 
-                <input type="text" placeholder="modelo" id="modelo" required>
-                <br>
-                <input type="number" placeholder="nro locomotora" id="nro" required>
+                <input type="marca"  id="marca" placeholder="marca" required>
                 <br>
 
-                <input type="marca" placeholder="marca" id="marca" required>
-                <br>
-
-                <input type="cantidad" placeholder="cantidad" id="cantidad" required>
-                <br>
-
-                <input type="date" placeholder="fechaCompra" id="fechaCompra" required>
+                <input type="date"  id="fechaCompra" placeholder="fecha compra" required>
                 <br>
                 <input type="text" accept="image/png" value="../assets/img/.* " id="imagen" type="file" required>
                 <br>
 
                 <span class="radio"> Compañia: </span>
                 <input type="radio" name="cia" value="BNSF" id="bnsf" required><label for="bnsf">BNSF</label>
-                <input type="radio" name="cia" value="NP" id="np"><label for="cia">NP</label>
+                <input type="radio" name="cia" value="NP" id="np"><label for="np">NP</label>
                 <input type="radio" name="cia" value="PRR" id="prr"><label for="prr">PRR</label>
                 <input type="radio" name="cia" value="SP" id="sp"><label for="sp">SP</label>
                 <input type="radio" name="cia" value="CSX" id="csx"><label for="csx">CSX</label>
@@ -86,8 +89,8 @@
                 <input type="radio" name="cia" value="NB" id="nb"><label for="nb">NB</label>
                 <input type="radio" name="cia" value="CN" id="cn"><label for="cn">CN</label>
                 <input type="radio" name="cia" value="NS" id="ns"><label for="ns">NS</label>
-                
                 <br>
+
                 <span class="radio"> Sistema: </span>
                 <input type="radio" name="dcc" value="Analoga" id="analoga" required><label for="analoga">ANALOGA</label>
                 <input type="radio" name="dcc" value="Digital" id="digital"><label for="digital">DIGITAL</label>
@@ -95,16 +98,16 @@
                 <input type="radio" name="dcc" value="Humo" id="humo"><label for="humo">DCC/SONIDO/HUMO</label>
                 <br>
 
-                <input type="number" placeholder="dir dcc" id="dir_dcc" required>
+                <input type="number"  id="dir_dcc" placeholder="dir dcc" required>
                 <br>
 
-                <input type="number" placeholder="costo U$S" id="costo" required>
+                <input type="number"  id="costo" placeholder="costo u$" required>
                 <br>
-                <input type="number" placeholder="precio actual U$S" id="precio" required>
+                <input type="number"  id="precio" placeholder="precio u$" required>
                 <br>
-                <br>
+                <br>  
 
-                <input type="submit" value="Guardar Producto">
+                <input id= "botonSubmit" type="submit" value="Guardar Producto">
             </form>
         </section>
 
@@ -114,7 +117,8 @@
         <p> -- Todos los derechos reservados Juan Manuel Martínez -- </p>
     </footer>
 
-    <script src="../js/rooster.js"></script>
+    <script src="../js/modificar.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
         crossorigin="anonymous"></script>

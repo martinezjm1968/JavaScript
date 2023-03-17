@@ -20,10 +20,13 @@ try {
         ///////////////
         const id = roster.length
         const tipo = tipoLoco.value
+        // Debería buscar si ya tengo alguna con ese tipo y rechazar el ingreso
+        // En base al tipo de acá para abajo debería tener tantos campos de c/descr como cantidades
+        const cantidad = document.getElementById("cantidad").value
+        // En base a cantidad abrir el abanico
         const modelo = document.getElementById("modelo").value
         const nro = document.getElementById("nro").value
         const marca = document.getElementById("marca").value
-        const cantidad = document.getElementById("cantidad").value
         const fechaCompra = document.getElementById("fechaCompra").value
         const imagen = document.getElementById("imagen").value
 
