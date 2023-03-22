@@ -4,6 +4,20 @@ try {
     // Forma abreviada!
     let roster = JSON.parse(localStorage.getItem("roster")) || []
 
+    // Si no hay nada cargado en el rooster lo precargo
+    if (roster.length == 0) {
+        roster.push({ id: 0, tipo: "Vapor", modelo: "BigBoy", nro: 7310, marca: "Broadway", cantidad: 1, fechaCompra: "2010/03/01", imagen: "../assets/img/bigboy.png", dcc: "Humo", dir_dcc: 7310, cia: "UP", costo: 400, precio: 850 })
+        roster.push({ id: 1, tipo: "Vapor", modelo: "CabForward", nro: 33, marca: "Broadway", cantidad: 1, fechaCompra: "2011/05/101", imagen: "../assets/img/cab_forward.png", dcc: "Digital", dir_dcc: 7310, cia: "PRR", costo: 450, precio: 900 })
+        roster.push({ id: 2, tipo: "Vapor", modelo: "Y6B", nro: 101, marca: "Broadway", cantidad: 1, fechaCompra: "2009/10/01", imagen: "../assets/img/y6b.png", dcc: "Humo", dir_dcc: 7310, cia: "PRR", costo: 350, precio: 900 })
+        roster.push({ id: 3, tipo: "Diesel", modelo: "SD90", nro: 2345, marca: "Genesis", cantidad: 1, fechaCompra: "2011/04/02", imagen: "../assets/img/sd90.png", dcc: "Digital", dir_dcc: 7310, cia: "CSX", costo: 250, precio: 350 })
+        roster.push({ id: 4, tipo: "Vapor", modelo: "AC4400", nro: 564, marca: "Genesis", cantidad: 1, fechaCompra: "2013/08/09", imagen: "../assets/img/ac4400.png", dcc: "Digital", dir_dcc: 7310, cia: "UP", costo: 270, precio: 400 })
+        const rosterJSON = JSON.stringify(roster)
+
+        localStorage.setItem("roster", rosterJSON)
+        window.location.href = window.location.href;
+        
+    } 
+
     console.log("Storage: " + roster)
 
     const form = document.getElementById("formulario")
