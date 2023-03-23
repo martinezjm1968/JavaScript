@@ -21,15 +21,18 @@ try {
         console.log("Resultado encontrado: " + encontrado);
 
         if (encontrado) {
+            // Me fijo si el objeto "encontrado" esta vacío. 
+            if (Object.entries(encontrado).length > 0) {
 
-            // Traigo la estructura del "nodo" del HTML con el ID = "productos" que es un DIV
-            const busquedaResult = document.getElementById('busquedaResult');
 
-            // Recorro el objeto para presentar los resultados en HTML con el innerHTML
-            encontrado.forEach(el => {
+                // Traigo la estructura del "nodo" del HTML con el ID = "productos" que es un DIV
+                const busquedaResult = document.getElementById('busquedaResult');
 
-                busquedaResult.innerHTML +=
-                    `
+                // Recorro el objeto para presentar los resultados en HTML con el innerHTML
+                encontrado.forEach(el => {
+
+                    busquedaResult.innerHTML +=
+                        `
                 <div class="col">
                     <div class="card h-40"> 
                         <img src="${el.imagen}" class="card-img-top" alt="...">
@@ -38,7 +41,6 @@ try {
                             <p class="card-text">Tipo: ${el.tipo}</p>
                             <p class="card-text">Nro locomotora: ${el.nro}</p>
                             <p class="card-text">Nro locomotora: ${el.marca}</p>
-                            <p class="card-text">Nro locomotora: ${el.cantidad}</p>
                             <p class="card-text">Fecha Compra: ${el.fechaCompra}</p>
                             <p class="card-text">Sistema: ${el.dcc}</p>
                             <p class="card-text">Dir DCC: ${el.dir_dcc}</p>
@@ -49,12 +51,20 @@ try {
                     </div>
                 </div>
                 `
-            })
+                })
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No se pudo encontrar!',
+                    //footer: '<a href="">Why do I have this issue?</a>'
+                })
+            }}
         }
-    }
-} catch (err) {
-    alert(`Error detectado:
+    } catch (err) {
+        alert(`Error detectado:
      ${err.name}
      ${err.message} 
      ${err.stack}`);
-}
+    }

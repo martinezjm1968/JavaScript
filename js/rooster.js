@@ -6,15 +6,16 @@ try {
 
     // Si no hay nada cargado en el rooster lo precargo
     if (roster.length == 0) {
-        roster.push({ id: 0, tipo: "Vapor", modelo: "BigBoy", nro: 7310, marca: "Broadway", cantidad: 1, fechaCompra: "2010/03/01", imagen: "../assets/img/bigboy.png", dcc: "Humo", dir_dcc: 7310, cia: "UP", costo: 400, precio: 850 })
-        roster.push({ id: 1, tipo: "Vapor", modelo: "CabForward", nro: 33, marca: "Broadway", cantidad: 1, fechaCompra: "2011/05/101", imagen: "../assets/img/cab_forward.png", dcc: "Digital", dir_dcc: 7310, cia: "PRR", costo: 450, precio: 900 })
-        roster.push({ id: 2, tipo: "Vapor", modelo: "Y6B", nro: 101, marca: "Broadway", cantidad: 1, fechaCompra: "2009/10/01", imagen: "../assets/img/y6b.png", dcc: "Humo", dir_dcc: 7310, cia: "PRR", costo: 350, precio: 900 })
-        roster.push({ id: 3, tipo: "Diesel", modelo: "SD90", nro: 2345, marca: "Genesis", cantidad: 1, fechaCompra: "2011/04/02", imagen: "../assets/img/sd90.png", dcc: "Digital", dir_dcc: 7310, cia: "CSX", costo: 250, precio: 350 })
-        roster.push({ id: 4, tipo: "Vapor", modelo: "AC4400", nro: 564, marca: "Genesis", cantidad: 1, fechaCompra: "2013/08/09", imagen: "../assets/img/ac4400.png", dcc: "Digital", dir_dcc: 7310, cia: "UP", costo: 270, precio: 400 })
+        roster.push({ id: 0, tipo: "Vapor", modelo: "BigBoy", nro: 7310, marca: "Broadway", fechaCompra: "2010/03/01", imagen: "../assets/img/bigboy.png", dcc: "Humo", dir_dcc: 7310, cia: "UP", costo: 400, precio: 850 },
+        { id: 1, tipo: "Vapor", modelo: "CabForward", nro: 33, marca: "Broadway", fechaCompra: "2011/05/101", imagen: "../assets/img/cab_forward.png", dcc: "Digital", dir_dcc: 7310, cia: "PRR", costo: 450, precio: 900 },
+        { id: 2, tipo: "Vapor", modelo: "Y6B", nro: 101, marca: "Broadway", fechaCompra: "2009/10/01", imagen: "../assets/img/y6b.png", dcc: "Humo", dir_dcc: 7310, cia: "PRR", costo: 350, precio: 900 },
+        { id: 3, tipo: "Diesel", modelo: "SD90", nro: 2345, marca: "Genesis", fechaCompra: "2011/04/02", imagen: "../assets/img/sd90.png", dcc: "Digital", dir_dcc: 7310, cia: "CSX", costo: 250, precio: 350 },
+        { id: 4, tipo: "Vapor", modelo: "AC4400", nro: 564, marca: "Genesis", fechaCompra: "2013/08/09", imagen: "../assets/img/ac4400.png", dcc: "Digital", dir_dcc: 7310, cia: "UP", costo: 270, precio: 400 })
+        
         const rosterJSON = JSON.stringify(roster)
 
         localStorage.setItem("roster", rosterJSON)
-        window.location.href = window.location.href;
+        
         
     } 
 
@@ -35,9 +36,7 @@ try {
         const id = roster.length
         const tipo = tipoLoco.value
         // Debería buscar si ya tengo alguna con ese tipo y rechazar el ingreso
-        // En base al tipo de acá para abajo debería tener tantos campos de c/descr como cantidades
-        const cantidad = document.getElementById("cantidad").value
-        // En base a cantidad abrir el abanico
+
         const modelo = document.getElementById("modelo").value
         const nro = document.getElementById("nro").value
         const marca = document.getElementById("marca").value
@@ -60,7 +59,7 @@ try {
         const costo = document.getElementById("costo").value
         const precio = document.getElementById("precio").value
 
-        roster.push({ id: id, tipo: tipo, modelo: modelo, nro: nro, marca: marca, cantidad: cantidad, fechaCompra: fechaCompra, imagen: imagen, dcc: dcc, dir_dcc: dir_dcc, cia: cia, costo: costo, precio: precio })
+        roster.push({ id: id, tipo: tipo, modelo: modelo, nro: nro, marca: marca, fechaCompra: fechaCompra, imagen: imagen, dcc: dcc, dir_dcc: dir_dcc, cia: cia, costo: costo, precio: precio })
 
         const rosterJSON = JSON.stringify(roster)
 
@@ -68,6 +67,13 @@ try {
 
         form.reset()
 
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'La Card ha sido creada!',
+            showConfirmButton: false,
+            timer: 1500
+          })
         console.log(roster)
     })
 

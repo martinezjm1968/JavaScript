@@ -21,7 +21,6 @@ try {
                     <p class="card-text">Tipo: ${el.tipo}</p>
                     <p class="card-text">Nro locomotora: ${el.nro}</p>
                     <p class="card-text">Marca: ${el.marca}</p>
-                    <p class="card-text">Cantidad: ${el.cantidad}</p>
                     <p class="card-text">Fecha Compra: ${el.fechaCompra}</p>
                     <p class="card-text">Sistema: ${el.dcc}</p>
                     <p class="card-text">Dir DCC: ${el.dir_dcc}</p>
@@ -42,27 +41,67 @@ try {
         console.log(id);
 
         let objetoModificado = roster.find(objeto => objeto.id === id);
-        alert("Se borrará el ítem: " + objetoModificado.modelo);
 
-        let borrado = roster.splice(id, 1)
-
-        // Con este contador regenero los índices según el length.
-        let i = 0
-        roster.forEach(el => {
-            el.id = i
-            i++
+        // SweetAlert
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
         })
 
+        swalWithBootstrapButtons.fire({
+            title: 'Estas Seguro?',
+            text: "No podras deshacerlo!",
+            icon: 'Cuidado',
+            showCancelButton: true,
+            confirmButtonText: 'Si, borrarlo!',
+            cancelButtonText: 'No, cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let borrado = roster.splice(id, 1)
 
-        const rosterJSON = JSON.stringify(roster)
+                // // Con este contador regenero los índices según el length.
+                let i = 0
+                roster.forEach(el => {
+                    el.id = i
+                    i++
+                })
 
-        localStorage.setItem("roster", rosterJSON)
 
-        
+                const rosterJSON = JSON.stringify(roster)
 
-        console.log(roster)
+                localStorage.setItem("roster", rosterJSON)
+
+                console.log(roster)
+                swalWithBootstrapButtons.fire(
+                    'Borrado!',
+                    'Su Card fue borrada',
+                    'exitosamente'
+                )
+                setTimeout(() => {
+                    location.reload()
+                }, 3000);
+                
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelado',
+                    'Su Card no fue modificada :)',
+                    'error'
+                )
+            }
+        })
+
         // Esta funcion refresca la pantalla para borrar lo que no quiero dejar
-        window.location.href = window.location.href;
+        
+        //    window.location.href = window.location.href;
+        
 
     }
 
