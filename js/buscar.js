@@ -14,13 +14,14 @@ boton.addEventListener("click", respuestaClick)
 
 function respuestaClick() {
     // Esto lo hago desde el localStorage
-    //let roster = JSON.parse(localStorage.getItem("roster")) || []
-    //console.log(roster);
+    let roster = JSON.parse(localStorage.getItem("roster")) || []
+    console.log(roster);
+    encontrado(roster);
 
     // Esto lo hago desde una API, en este caso local!
-    fetch('../api/api_roster.json')
-        .then(response => response.json())
-        .then(roster => encontrado(roster))
+    //fetch('../api/api_roster.json')
+    //    .then(response => response.json())
+    //    .then(roster => encontrado(roster))
 }
 
 
