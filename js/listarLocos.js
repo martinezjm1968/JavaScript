@@ -4,14 +4,24 @@ try {
 
     const locomotoras = document.getElementById('locomotoras');
     let contador = 0;
-    
+    let roster;
+
+
+    // Como no tenemos la vision de poder modificar el JSON y mi trabajo puede dar de alta o baja realizo una copia de los dos repositorios
+    // JSON y localStorage y los comparo, si hay diferencias trabajo con localStorage y si no con JSON.
+    // A futuro se podria tener una variable en localStorage que si se ha modificado o ingresado info se trabaje con este repositorio
     // Roster de archivo JSON
+    try {
     fetch('../api/api_roster.json')
         .then(response => response.json())
         .then(rosterJSON => compararRosters(rosterJSON))
-    
-    let roster = compararRosters()
-    
+
+    } catch (err) {
+        alert(`Error detectado:
+        ${err.name}
+        ${err.message} 
+        ${err.stack}`);
+    }
     function compararRosters(rosterJSON) {
         // Roster de localStorage
         let rosterLS = JSON.parse(localStorage.getItem("roster")) || []
@@ -19,39 +29,68 @@ try {
 
         if (rosterLS != rosterJSON) {
             roster = rosterLS;
+            // Recorro el objeto para presentar los resultados en HTML con el innerHTML
+            roster.forEach(el => {
+
+                locomotoras.innerHTML +=
+                    `
+                    <div class="col" id="card-${contador}">
+                        <div class="card h-40"> 
+                            <img src="${el.imagen}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${el.modelo}</h5>
+                                <p class="card-text">Tipo: ${el.tipo}</p>
+                                <p class="card-text">Nro locomotora: ${el.nro}</p>
+                                <p class="card-text">Marca: ${el.marca}</p>
+                                <p class="card-text">Fecha Compra: ${el.fechaCompra}</p>
+                                <p class="card-text">Sistema: ${el.dcc}</p>
+                                <p class="card-text">Dir DCC: ${el.dir_dcc}</p>
+                                <p class="card-text">Compañia: ${el.cia}</p>
+                                <p class="card-text">Costo: u$${el.costo}</p>
+                                <p class="card-text">Precio: u$${el.precio}</p>
+
+                                <a href="#" class="btn btn-primary" onclick="borrarCard(${contador})">Borrar Card</a>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                contador++;
+            })
         } else {
             roster = rosterJSON;
+            let i = 0;
+            for (let i = 0; i < roster.length; i++) {
+            const element = roster[i];
+                
+            
+            locomotoras.innerHTML +=
+            `
+            <div class="col" id="card-${contador}">
+                <div class="card h-40"> 
+                    <img src="${element.imagen}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${element.modelo}</h5>
+                        <p class="card-text">Tipo: ${element.tipo}</p>
+                        <p class="card-text">Nro locomotora: ${element.nro}</p>
+                        <p class="card-text">Marca: ${element.marca}</p>
+                        <p class="card-text">Fecha Compra: ${element.fechaCompra}</p>
+                        <p class="card-text">Sistema: ${element.dcc}</p>
+                        <p class="card-text">Dir DCC: ${element.dir_dcc}</p>
+                        <p class="card-text">Compañia: ${element.cia}</p>
+                        <p class="card-text">Costo: u$${element.costo}</p>
+                        <p class="card-text">Precio: u$${element.precio}</p>
+
+                        <a href="#" class="btn btn-primary" onclick="borrarCard(${contador})">Borrar Card</a>
+                    </div>
+                </div>
+            </div>
+            `
+        }
         }
         return roster
     }
-    
-    // Recorro el objeto para presentar los resultados en HTML con el innerHTML
-    roster.forEach(el => {
 
-        locomotoras.innerHTML +=
-            `
-        <div class="col" id="card-${contador}">
-            <div class="card h-40"> 
-                <img src="${el.imagen}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${el.modelo}</h5>
-                    <p class="card-text">Tipo: ${el.tipo}</p>
-                    <p class="card-text">Nro locomotora: ${el.nro}</p>
-                    <p class="card-text">Marca: ${el.marca}</p>
-                    <p class="card-text">Fecha Compra: ${el.fechaCompra}</p>
-                    <p class="card-text">Sistema: ${el.dcc}</p>
-                    <p class="card-text">Dir DCC: ${el.dir_dcc}</p>
-                    <p class="card-text">Compañia: ${el.cia}</p>
-                    <p class="card-text">Costo: u$${el.costo}</p>
-                    <p class="card-text">Precio: u$${el.precio}</p>
 
-                    <a href="#" class="btn btn-primary" onclick="borrarCard(${contador})">Borrar Card</a>
-                </div>
-            </div>
-        </div>
-        `
-        contador++;
-    })
 
     // Funcion borrarCard
     function borrarCard(id) {
